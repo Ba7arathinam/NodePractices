@@ -22,7 +22,7 @@ let Storage = multer.diskStorage({
     }
 })
 
-let upload= multer({storage:Storage})
+let upload= multer({storage:Storage,limits:{fileSize: 1*1024*1024}})
 
 app.get('/ejs',(req,res)=>{
     res.render('index',
@@ -34,6 +34,12 @@ app.get('/pug',(req,res)=>{
 })
 
 app.post('/upload',upload.single('file'),(req,res)=>{
+ res.send('file uploaded')
+})
+app.post('/uploads',upload.array('files', 3),(req,res)=>{
+ res.send('file uploaded')
+})
+app.post('/fields',upload.fields([{ name: 'oneFile', maxCount: 1 }, { name: 'manyFile', maxCount: 8 }]),(req,res)=>{
  res.send('file uploaded')
 })
 
