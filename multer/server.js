@@ -6,10 +6,10 @@ const { title } = require('process');
 app.use(express.json());
 
 // app.set('view engine', "ejs");
-// app.set('views', path.join(__dirname,'views'));
+// app.set('views', 'views');
 
 app.set('view engine','pug')
-app.set('views', path.join(__dirname,'pug'));
+app.set('views','pug');
 
 let Storage = multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -18,7 +18,7 @@ let Storage = multer.diskStorage({
     filename:(req,file,cb)=>{
         // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         // cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-        cb(null,file.originalname+"_"+Date.now()+ path.extname(file.originalname))
+        cb(null,file.originalname)
     }
 })
 
