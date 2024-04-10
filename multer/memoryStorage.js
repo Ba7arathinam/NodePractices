@@ -21,7 +21,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
   console.log('Received file:', file.originalname);
   console.log('File size:', file.size, 'bytes');
   console.log('MIME type:', file.mimetype);
-
   res.send('File uploaded successfully.');
 });
 
